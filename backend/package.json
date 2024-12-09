@@ -1,0 +1,44 @@
+{
+  "name": "dating-coach-backend",
+  "version": "1.0.0",
+  "description": "AI-powered dating app conversation starter generator - Backend",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write 'src/**/*.ts'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/csv-parse": "^1.1.12",
+    "@types/csv-stringify": "^1.4.3",
+    "@types/express": "^5.0.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.10.1",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@pinecone-database/pinecone": "^4.0.0",
+    "cors": "^2.8.5",
+    "csv-parse": "^5.5.0",
+    "csv-stringify": "^6.5.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.4.1",
+    "express-validator": "^7.2.0",
+    "fs-extra": "^11.1.1",
+    "helmet": "^8.0.0",
+    "morgan": "^1.10.0",
+    "natural": "^6.8.0",
+    "openai": "^4.0.0"
+  }
+}
