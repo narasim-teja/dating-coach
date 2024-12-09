@@ -3,6 +3,7 @@ import Navbar from './components/Navbar'
 import Profile from './pages/Profile'
 import Upload from './pages/Upload'
 import Conversation from './pages/Conversation'
+import Home from './pages/Home'
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/conversation" element={<Conversation />} />
-          <Route path="/" element={<Conversation />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </div>
     </Router>
