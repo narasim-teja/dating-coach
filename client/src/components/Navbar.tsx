@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import Logo from '/Logo.webp'
 
 const Navbar = () => {
   return (
@@ -7,12 +8,13 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link to="/" className="text-xl font-bold text-gray-800">
-                Dating Coach AI
+              <Link to="/" className="flex items-center">
+                <img src={Logo} alt="Dating Coach AI Logo" className="h-8 w-auto mr-2" />
+                <span className="text-xl font-bold text-gray-800">Dating Coach AI</span>
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <Link
+              <Link 
                 to="/profile"
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900"
               >
