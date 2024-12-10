@@ -54,46 +54,70 @@ const testimonials = [
 const Home = () => {
   return (
     <div className="bg-gray-900 text-gray-100">
+      {/* Font imports */}
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+        `}
+      </style>
+      
       {/* Hero Section */}
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 opacity-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative">
           <div className="text-center">
-            <style>
-              @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-            </style>
             <h1 
               className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
               style={{ fontFamily: "'Dancing Script', cursive" }}
             >
               Unlock the Power of AI in Dating
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-300">
+            <p 
+              className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-300"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
               AI-powered tools tailored to your unique texting style for all your dating apps
             </p>
             <div className="max-w-4xl mx-auto mb-12 grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg p-6 border border-gray-700">
-                <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                <h3 
+                  className="text-xl font-semibold mb-2 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
                   Personalized Messaging
                 </h3>
-                <p className="text-gray-400">Our AI learns your texting style and personality to create messages that sound authentically you.</p>
+                <p className="text-gray-400" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  Our AI learns your texting style and personality to create messages that sound authentically you.
+                </p>
               </div>
               <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg p-6 border border-gray-700">
-                <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">
+                <h3 
+                  className="text-xl font-semibold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
                   Context-Aware Responses
                 </h3>
-                <p className="text-gray-400">Generate relevant replies based on profile bios and ongoing conversations.</p>
+                <p className="text-gray-400" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  Generate relevant replies based on profile bios and ongoing conversations.
+                </p>
               </div>
               <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg p-6 border border-gray-700">
-                <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text">
+                <h3 
+                  className="text-xl font-semibold mb-2 bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
                   Multiple Options
                 </h3>
-                <p className="text-gray-400">Choose from a variety of AI-generated conversation starters and responses.</p>
+                <p className="text-gray-400" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  Choose from a variety of AI-generated conversation starters and responses.
+                </p>
               </div>
             </div>
             <Link
               to="/conversation"
-              className="inline-flex items-center px-8 py-3 rounded-md bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium transition-all duration-300 transform hover:scale-105"
+              className="inline-flex items-center px-8 py-3 rounded-md bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white font-medium transition-all duration-300 transform hover:scale-105 hover:from-blue-500 hover:via-purple-600 hover:to-pink-600"
+              style={{ fontFamily: "'Playfair Display', serif" }}
             >
               Get Started
               <FaArrowRight className="ml-2" />
@@ -106,17 +130,32 @@ const Home = () => {
       <div className="py-16 bg-gray-900/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text">
+            <h2 
+              className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+              style={{ fontFamily: "'Dancing Script', cursive" }}
+            >
               Why Choose Our AI Dating Coach?
             </h2>
-            <p className="text-xl text-gray-400 mb-12">Your personal assistant for meaningful connections</p>
+            <p 
+              className="text-xl text-gray-400 mb-12"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Your personal assistant for meaningful connections
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="bg-gray-800/50 p-8 rounded-lg border border-gray-700 transform hover:scale-105 transition-transform duration-300">
                 <div className="mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2 text-gray-100">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
+                <h3 
+                  className="text-2xl font-semibold mb-2 text-gray-100"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
@@ -127,23 +166,52 @@ const Home = () => {
       <div className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text">
+            <h2 
+              className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+              style={{ fontFamily: "'Dancing Script', cursive" }}
+            >
               Transform Your Dating Experience
             </h2>
-            <p className="text-xl text-gray-400">Let our AI coach help you make meaningful connections</p>
+            <p 
+              className="text-xl text-gray-400"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Let our AI coach help you make meaningful connections
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="bg-gray-800/50 rounded-lg p-8 border border-gray-700">
-              <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">90%</div>
-              <p className="text-gray-400">Higher response rate with AI-crafted messages</p>
+              <div 
+                className="text-5xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text"
+                style={{ fontFamily: "'Dancing Script', cursive" }}
+              >
+                90%
+              </div>
+              <p className="text-gray-400" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Higher response rate with AI-crafted messages
+              </p>
             </div>
             <div className="bg-gray-800/50 rounded-lg p-8 border border-gray-700">
-              <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">24/7</div>
-              <p className="text-gray-400">Available to help you craft the perfect message</p>
+              <div 
+                className="text-5xl font-bold mb-2 bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text"
+                style={{ fontFamily: "'Dancing Script', cursive" }}
+              >
+                24/7
+              </div>
+              <p className="text-gray-400" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Available to help you craft the perfect message
+              </p>
             </div>
             <div className="bg-gray-800/50 rounded-lg p-8 border border-gray-700">
-              <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text">100%</div>
-              <p className="text-gray-400">Personalized to match your style</p>
+              <div 
+                className="text-5xl font-bold mb-2 bg-gradient-to-r from-pink-500 to-red-500 text-transparent bg-clip-text"
+                style={{ fontFamily: "'Dancing Script', cursive" }}
+              >
+                100%
+              </div>
+              <p className="text-gray-400" style={{ fontFamily: "'Playfair Display', serif" }}>
+                Personalized to match your style
+              </p>
             </div>
           </div>
         </div>
@@ -170,42 +238,62 @@ const Home = () => {
       </div>
 
       {/* Testimonials Section */}
-      <div className="py-16">
+      <div className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12">What Our Users Say</h2>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex items-start space-x-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-16 h-16 rounded-full object-cover"
-                />
-                <div>
-                  <p className="text-gray-600 italic mb-4">"{testimonial.quote}"</p>
-                  <div className="font-semibold">{testimonial.name}</div>
-                  <div className="text-gray-500 text-sm">{testimonial.role}</div>
+            <div className="bg-white rounded-lg p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="flex-1">
+                  <p className="text-gray-800 text-lg italic mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    "This AI coach transformed my dating game completely!"
+                  </p>
+                  <p className="text-gray-600" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    User
+                  </p>
                 </div>
               </div>
-            ))}
+            </div>
+            <div className="bg-white rounded-lg p-8 shadow-lg">
+              <div className="flex items-start space-x-4">
+                <div className="flex-1">
+                  <p className="text-gray-800 text-lg italic mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    "Finally, messages that actually sound like me!"
+                  </p>
+                  <p className="text-gray-600" style={{ fontFamily: "'Playfair Display', serif" }}>
+                    User
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* CTA Section */}
-      <div className="bg-indigo-600 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Dating Game?</h2>
-          <p className="text-xl mb-8">Start crafting engaging messages that get responses.</p>
-          <Link
-            to="/conversation"
-            className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:text-lg"
-          >
-            Start Crafting Messages Today
-            <FaArrowRight className="ml-2" />
-          </Link>
+      <div className="py-16 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 
+              className="text-4xl font-bold mb-4"
+              style={{ fontFamily: "'Dancing Script', cursive" }}
+            >
+              Ready to Transform Your Dating Game?
+            </h2>
+            <p 
+              className="text-xl mb-8"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Start crafting engaging messages that get responses.
+            </p>
+            <Link
+              to="/conversation"
+              className="inline-flex items-center px-8 py-3 rounded-md bg-white text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Start Crafting Messages Today
+              <FaArrowRight className="ml-2" />
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -214,21 +302,36 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-gray-200">About</h3>
-              <ul className="space-y-2">
+              <h3 
+                className="text-lg font-semibold mb-4 text-gray-200"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                About
+              </h3>
+              <ul className="space-y-2" style={{ fontFamily: "'Playfair Display', serif" }}>
                 <li><Link to="/about" className="hover:text-purple-400 transition-colors">About Us</Link></li>
                 <li><Link to="/contact" className="hover:text-purple-400 transition-colors">Contact</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-gray-200">Legal</h3>
-              <ul className="space-y-2">
+              <h3 
+                className="text-lg font-semibold mb-4 text-gray-200"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Legal
+              </h3>
+              <ul className="space-y-2" style={{ fontFamily: "'Playfair Display', serif" }}>
                 <li><Link to="/privacy" className="hover:text-purple-400 transition-colors">Privacy Policy</Link></li>
                 <li><Link to="/terms" className="hover:text-purple-400 transition-colors">Terms of Service</Link></li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-gray-200">Follow Us</h3>
+              <h3 
+                className="text-lg font-semibold mb-4 text-gray-200"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Follow Us
+              </h3>
               <div className="flex space-x-4">
                 <a href="#" className="hover:text-purple-400 transition-colors"><FaHeart /></a>
                 <a href="#" className="hover:text-purple-400 transition-colors"><FaComments /></a>
@@ -237,12 +340,15 @@ const Home = () => {
             </div>
             <div>
               <img src={Logo} alt="Dating Coach AI" className="h-8 w-auto mb-4" />
-              <p className="text-sm">
+              <p 
+                className="text-sm"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
                 Your AI companion for better dating conversations.
               </p>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm">
+          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm" style={{ fontFamily: "'Playfair Display', serif" }}>
             © {new Date().getFullYear()} Dating Coach AI. All rights reserved.
           </div>
         </div>
