@@ -34,7 +34,6 @@ const Conversation = () => {
     try {
       const worker = await createWorker() as Worker & { loadLanguage: (lang: string) => Promise<void> }
       
-      // Convert File to base64
       const base64Image = await new Promise<string>((resolve) => {
         const reader = new FileReader()
         reader.onloadend = () => resolve(reader.result as string)
@@ -90,13 +89,32 @@ const Conversation = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-900 text-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+        `}
+      </style>
       <div className="max-w-3xl mx-auto">
-        <div className="bg-white rounded-lg shadow-md p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Get Conversation Starters</h2>
-          
+        <div className="text-center mb-8">
+          <h1 
+            className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+            style={{ fontFamily: "'Dancing Script', cursive" }}
+          >
+            Get Conversation Starters
+          </h1>
+          <p 
+            className="text-xl text-gray-400"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Upload a screenshot and let AI craft the perfect opener
+          </p>
+        </div>
+
+        <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg p-8 border border-gray-700">
           <div className="space-y-6">
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+            <div className="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center">
               <div className="space-y-4">
                 {imagePreview ? (
                   <div className="relative">
@@ -112,7 +130,7 @@ const Conversation = () => {
                         setExtractedText('')
                         setError('')
                       }}
-                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors duration-300"
                     >
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -126,9 +144,12 @@ const Conversation = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" />
                       </svg>
                     </div>
-                    <div className="text-gray-600">
+                    <div 
+                      className="text-gray-300"
+                      style={{ fontFamily: "'Playfair Display', serif" }}
+                    >
                       <label htmlFor="image-upload" className="relative cursor-pointer">
-                        <span className="text-blue-600 hover:text-blue-500">Upload a screenshot</span>
+                        <span className="text-purple-400 hover:text-purple-300 transition-colors">Upload a screenshot</span>
                         <input
                           id="image-upload"
                           name="image-upload"
@@ -139,21 +160,21 @@ const Conversation = () => {
                         />
                       </label>
                     </div>
-                    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                    <p className="text-xs text-gray-400">PNG, JPG, GIF up to 10MB</p>
                   </>
                 )}
               </div>
             </div>
 
             {error && (
-              <div className="text-red-600 text-center p-2 bg-red-50 rounded">
+              <div className="text-red-400 text-center p-2 bg-red-900/50 rounded-lg border border-red-700">
                 {error}
               </div>
             )}
 
             {loading && (
               <div className="text-center">
-                <div className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-blue-500">
+                <div className="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm rounded-md text-white bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
                   <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -166,7 +187,8 @@ const Conversation = () => {
             {selectedImage && !loading && (
               <button
                 onClick={handleSubmit}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-full flex justify-center py-3 px-4 rounded-md bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white font-medium transition-all duration-300 transform hover:scale-105 hover:from-blue-500 hover:via-purple-600 hover:to-pink-600"
+                style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 Generate Starters
               </button>
@@ -174,24 +196,33 @@ const Conversation = () => {
 
             {starters.length > 0 && (
               <div className="mt-8 space-y-4">
-                <h3 className="text-lg font-medium text-gray-900">Conversation Starters:</h3>
-                <div className="grid gap-4 sm:grid-cols-1">
+                <h3 
+                  className="text-xl font-medium text-gray-200 mb-4"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Conversation Starters:
+                </h3>
+                <div className="grid gap-4">
                   {starters.map((starter, index) => (
                     <div
                       key={index}
-                      className="bg-white overflow-hidden shadow-sm rounded-lg border border-gray-200 hover:border-blue-500 transition-colors duration-200"
+                      className="bg-gray-700/50 backdrop-blur-lg rounded-lg p-6 border border-gray-600 hover:border-purple-500 transition-colors duration-200"
                     >
-                      <div className="p-6">
-                        <p className="text-gray-700">{starter}</p>
-                        <button
-                          onClick={() => {
-                            navigator.clipboard.writeText(starter)
-                          }}
-                          className="mt-4 inline-flex items-center px-3 py-1 border border-transparent text-sm leading-4 font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                        >
-                          Copy
-                        </button>
-                      </div>
+                      <p 
+                        className="text-gray-200 mb-4"
+                        style={{ fontFamily: "'Playfair Display', serif" }}
+                      >
+                        {starter}
+                      </p>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(starter)
+                        }}
+                        className="inline-flex items-center px-3 py-1 rounded-md bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 transition-colors duration-200"
+                        style={{ fontFamily: "'Playfair Display', serif" }}
+                      >
+                        Copy
+                      </button>
                     </div>
                   ))}
                 </div>

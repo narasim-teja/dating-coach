@@ -3,93 +3,101 @@ import { useState } from 'react'
 const Profile = () => {
   const [formData, setFormData] = useState({
     name: '',
-    age: '',
     bio: '',
-    interests: ''
+    preferences: ''
   })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Handle form submission
-    console.log(formData)
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+    // Handle form submission
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Your Profile</h2>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="age" className="block text-sm font-medium text-gray-700">
-              Age
-            </label>
-            <input
-              type="number"
-              name="age"
-              id="age"
-              value={formData.age}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="bio" className="block text-sm font-medium text-gray-700">
-              Bio
-            </label>
-            <textarea
-              name="bio"
-              id="bio"
-              rows={3}
-              value={formData.bio}
-              onChange={handleChange}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="interests" className="block text-sm font-medium text-gray-700">
-              Interests
-            </label>
-            <input
-              type="text"
-              name="interests"
-              id="interests"
-              value={formData.interests}
-              onChange={handleChange}
-              placeholder="Separate with commas"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+    <div className="bg-gray-900 text-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
+        `}
+      </style>
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-8">
+          <h1 
+            className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+            style={{ fontFamily: "'Dancing Script', cursive" }}
           >
-            Save Profile
-          </button>
-        </form>
+            Your Dating Profile
+          </h1>
+          <p 
+            className="text-xl text-gray-400"
+            style={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            Customize your profile to get better matches
+          </p>
+        </div>
+
+        <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg p-8 border border-gray-700">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label 
+                htmlFor="name" 
+                className="block text-lg font-medium text-gray-200"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              />
+            </div>
+
+            <div>
+              <label 
+                htmlFor="bio" 
+                className="block text-lg font-medium text-gray-200"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Bio
+              </label>
+              <textarea
+                id="bio"
+                rows={4}
+                value={formData.bio}
+                onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              />
+            </div>
+
+            <div>
+              <label 
+                htmlFor="preferences" 
+                className="block text-lg font-medium text-gray-200"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Dating Preferences
+              </label>
+              <textarea
+                id="preferences"
+                rows={4}
+                value={formData.preferences}
+                onChange={(e) => setFormData({ ...formData, preferences: e.target.value })}
+                className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full flex justify-center py-3 px-4 rounded-md bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white font-medium transition-all duration-300 transform hover:scale-105 hover:from-blue-500 hover:via-purple-600 hover:to-pink-600"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Save Profile
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   )

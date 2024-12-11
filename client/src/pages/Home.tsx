@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Link } from 'react-router-dom';
 import Logo from '/Logo.webp';
 import { FaHeart, FaComments, FaCog, FaArrowRight, FaSmile, FaRobot, FaLightbulb, FaUserFriends } from 'react-icons/fa';
@@ -68,7 +69,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative">
           <div className="text-center">
             <h1 
-              className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+              className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text leading-normal md:leading-tight pb-2"
               style={{ fontFamily: "'Dancing Script', cursive" }}
             >
               Unlock the Power of AI in Dating
@@ -218,19 +219,40 @@ const Home = () => {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-16">
+      <div className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-12">How It Works</h2>
+            <h2 
+              className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+              style={{ fontFamily: "'Dancing Script', cursive" }}
+            >
+              How It Works
+            </h2>
+            <p 
+              className="text-xl text-gray-400 mb-12"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Get started in just a few simple steps
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {steps.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">
+              <div key={index} className="bg-gray-800/50 backdrop-blur-lg rounded-lg p-8 border border-gray-700 text-center transform hover:scale-105 transition-all duration-300">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-6">
                   {index + 1}
                 </div>
-                <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
+                <h3 
+                  className="text-xl font-semibold mb-2 text-gray-100"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  {step.title}
+                </h3>
+                <p 
+                  className="text-gray-400"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  {step.description}
+                </p>
               </div>
             ))}
           </div>
@@ -240,27 +262,53 @@ const Home = () => {
       {/* Testimonials Section */}
       <div className="py-16 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 
+              className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-transparent bg-clip-text"
+              style={{ fontFamily: "'Dancing Script', cursive" }}
+            >
+              What Our Users Say
+            </h2>
+            <p 
+              className="text-xl text-gray-400"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Real success stories from our community
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg p-8 shadow-lg">
+            <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg p-8 border border-gray-700 transform hover:scale-105 transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="flex-1">
-                  <p className="text-gray-800 text-lg italic mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  <p 
+                    className="text-gray-200 text-lg italic mb-4" 
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
                     "This AI coach transformed my dating game completely!"
                   </p>
-                  <p className="text-gray-600" style={{ fontFamily: "'Playfair Display', serif" }}>
-                    User
+                  <p 
+                    className="text-gray-400" 
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    Alex M.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="bg-white rounded-lg p-8 shadow-lg">
+            <div className="bg-gray-800/50 backdrop-blur-lg rounded-lg p-8 border border-gray-700 transform hover:scale-105 transition-all duration-300">
               <div className="flex items-start space-x-4">
                 <div className="flex-1">
-                  <p className="text-gray-800 text-lg italic mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                  <p 
+                    className="text-gray-200 text-lg italic mb-4" 
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
                     "Finally, messages that actually sound like me!"
                   </p>
-                  <p className="text-gray-600" style={{ fontFamily: "'Playfair Display', serif" }}>
-                    User
+                  <p 
+                    className="text-gray-400" 
+                    style={{ fontFamily: "'Playfair Display', serif" }}
+                  >
+                    John K.
                   </p>
                 </div>
               </div>
@@ -287,7 +335,7 @@ const Home = () => {
             </p>
             <Link
               to="/conversation"
-              className="inline-flex items-center px-8 py-3 rounded-md bg-white text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 font-medium hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+              className="inline-flex items-center px-8 py-3 rounded-md bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white font-medium hover:from-blue-500 hover:via-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               Start Crafting Messages Today
