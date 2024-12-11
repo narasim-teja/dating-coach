@@ -4,6 +4,7 @@ import Profile from './pages/Profile'
 import Upload from './pages/Upload'
 import Conversation from './pages/Conversation'
 import Home from './pages/Home'
+import NotFound from './pages/NotFound'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/upload" element={<Upload />} />
           <Route path="/conversation" element={<Conversation />} />
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

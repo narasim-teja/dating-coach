@@ -346,21 +346,9 @@ const Home = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+      <footer className="py-12 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <h3 
-                className="text-lg font-semibold mb-4 text-gray-200"
-                style={{ fontFamily: "'Playfair Display', serif" }}
-              >
-                About
-              </h3>
-              <ul className="space-y-2" style={{ fontFamily: "'Playfair Display', serif" }}>
-                <li><Link to="/about" className="hover:text-purple-400 transition-colors">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-purple-400 transition-colors">Contact</Link></li>
-              </ul>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 
                 className="text-lg font-semibold mb-4 text-gray-200"
@@ -368,10 +356,20 @@ const Home = () => {
               >
                 Legal
               </h3>
-              <ul className="space-y-2" style={{ fontFamily: "'Playfair Display', serif" }}>
-                <li><Link to="/privacy" className="hover:text-purple-400 transition-colors">Privacy Policy</Link></li>
-                <li><Link to="/terms" className="hover:text-purple-400 transition-colors">Terms of Service</Link></li>
-              </ul>
+              <div className="space-y-2">
+                <p 
+                  className="text-gray-400 cursor-not-allowed"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Privacy Policy
+                </p>
+                <p 
+                  className="text-gray-400 cursor-not-allowed"
+                  style={{ fontFamily: "'Playfair Display', serif" }}
+                >
+                  Terms of Service
+                </p>
+              </div>
             </div>
             <div>
               <h3 
@@ -381,22 +379,22 @@ const Home = () => {
                 Follow Us
               </h3>
               <div className="flex space-x-4">
-                <a href="#" className="hover:text-purple-400 transition-colors"><FaHeart /></a>
-                <a href="#" className="hover:text-purple-400 transition-colors"><FaComments /></a>
-                <a href="#" className="hover:text-purple-400 transition-colors"><FaCog /></a>
+                <span className="text-gray-400 cursor-not-allowed hover:text-purple-400 transition-colors"><FaHeart /></span>
+                <span className="text-gray-400 cursor-not-allowed hover:text-purple-400 transition-colors"><FaComments /></span>
+                <span className="text-gray-400 cursor-not-allowed hover:text-purple-400 transition-colors"><FaCog /></span>
               </div>
             </div>
             <div>
               <img src={Logo} alt="Dating Coach AI" className="h-8 w-auto mb-4" />
               <p 
-                className="text-sm"
+                className="text-sm text-gray-400"
                 style={{ fontFamily: "'Playfair Display', serif" }}
               >
                 Your AI companion for better dating conversations.
               </p>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-400" style={{ fontFamily: "'Playfair Display', serif" }}>
             © {new Date().getFullYear()} Dating Coach AI. All rights reserved.
           </div>
         </div>
