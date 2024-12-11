@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from '/Logo.webp'
+import { FaComments } from 'react-icons/fa'
 
 const Navbar = () => {
   return (
@@ -48,6 +49,14 @@ const Navbar = () => {
           {/* Right side navigation */}
           <div className="hidden sm:flex sm:items-center">
             <div className="flex space-x-8">
+              <Link
+                to="/chat"
+                className="inline-flex items-center px-4 py-2 text-lg font-medium rounded-md bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white hover:from-blue-500 hover:via-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25 gap-2"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                <FaComments className="w-5 h-5" />
+                Chat Assistant
+              </Link>
               <Link
                 to="/conversation"
                 className="inline-flex items-center px-4 py-2 text-lg font-medium rounded-md bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 text-white hover:from-blue-500 hover:via-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/25"
