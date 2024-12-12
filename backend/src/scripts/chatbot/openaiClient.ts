@@ -16,7 +16,7 @@ export async function generateResponse(messages: Array<OpenAI.Chat.ChatCompletio
         const completion = await openai.chat.completions.create({
             model: "gpt-4",  // You can switch to "gpt-3.5-turbo" for faster/cheaper responses
             messages: messages,
-            temperature: 0.7,
+            temperature: 0.85,
             max_tokens: 150,
             top_p: 1,
             frequency_penalty: 0.5,
