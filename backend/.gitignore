@@ -69,6 +69,3 @@ temp/
 # TypeScript cache
 *.tsbuildinfo
 
-# Local data files
-data/
-uploads/
