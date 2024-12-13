@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/app.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
+    "metrics": "ts-node src/scripts/metrics/runMetrics.ts",
     "build": "tsc",
     "test": "jest",
     "lint": "eslint . --ext .ts",
