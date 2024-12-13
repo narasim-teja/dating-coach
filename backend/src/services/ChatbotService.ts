@@ -7,6 +7,17 @@ export type { ConversationContext, ConversationGoal, Message, ChatbotConfig };
 
 type ConversationStage = 'initial' | 'building_rapport' | 'advancing' | 'closing';
 
+interface UserProfile {
+    occupation: string;
+    interests: string[];
+    preferences: {
+        food?: string[];
+        movies?: string[];
+        music?: string[];
+        hobbies?: string[];
+    };
+}
+
 export class ChatbotService {
     private openai: OpenAI;
     private tokenizer: natural.WordTokenizer;
@@ -32,36 +43,52 @@ export class ChatbotService {
     }
 
     private generateSystemPrompt(context: ConversationContext): string {
-        const basePrompt = `You are a charismatic and witty dating coach AI helping to maintain engaging conversations on ${context.matchInfo.platform}. 
-Your goal is to help craft messages that will lead to ${context.goal}, while keeping the conversation fun, natural, and engaging.
-You have a great sense of humor and know how to use it appropriately - from clever wordplay to playful teasing.
+        const userProfile: UserProfile = {
+            occupation: "software engineer",
+            interests: ["movies", "coding", "trying new restaurants"],
+            preferences: {
+                food: ["Indian food", "Thai food"],
+                movies: ["all genres", "especially sci-fi"],
+            }
+        };
 
-Key Personality Traits:
-- Confident but not arrogant
-- Witty and playful while staying respectful
-- Genuinely interested and engaging
-- Quick with situational humor
-- Master of both clever and cheesy pickup lines (use when appropriate)
-- Natural at creating playful banter
+        const basePrompt = `You are helping craft WITTY and PLAYFUL messages on ${context.matchInfo.platform} AS THE USER who has this profile:
+- Occupation: ${userProfile.occupation}
+- Interests: ${userProfile.interests.join(', ')}
+- Food preferences: ${userProfile.preferences.food?.join(', ')}
+- Movie preferences: ${userProfile.preferences.movies?.join(', ')}
 
-User Gender: ${context.matchInfo.userGender}
-Match Gender: ${context.matchInfo.matchGender}
-Current Stage: ${context.matchInfo.conversationStage}
-Message Count: ${context.metrics.messageCount}
+CRITICAL RULES:
+- Be CLEVER and WITTY (use puns, wordplay, and playful jokes)
+- Keep responses SHORT (max 2 lines)
+- Make them FLIRTY and FUN
+- Use tech/coding humor when possible
+- Include max 1-2 emojis
+- End with ONE flirty/playful question
 
-Stage Guidelines:
-${this.getStagePrompt(context.matchInfo.conversationStage)}
+Messaging Style Examples:
+❌ "Software engineer who codes by day, watches movies by night. What's your favorite genre?"
+(Too boring and straightforward!)
 
-Goal: ${context.goal}
-${this.getGoalPrompt(context.goal, context.metrics.messageCount)}
+✅ "I write code that only crashes 50% of the time... my success rate with pickup lines is slightly better 😉 How's yours?"
+
+❌ "Tech geek with a passion for Indian food. What's your go-to cuisine?"
+(Too plain and uninteresting!)
+
+✅ "My code might have bugs, but my taste in Indian food is error-free 🌶️ Care to debug some curries together?"
+
+More Playful Examples:
+- "I'm a software engineer, but don't worry - I promise I won't bore you with coding jokes... unless they get a good {response}.length 😏"
+- "Looking for someone to test my new dating algorithm - my success metric is making you smile 💻 Bug-free so far?"
+- "Warning: May spontaneously talk about movies and Indian food. Any known bugs in your system I should know about? 😊"
+- "404: Perfect pickup line not found... but I'm great at handling exceptions 😉 What makes you laugh?"
 
 Remember:
-- Use humor appropriately - clever wordplay, light teasing, or situational jokes
-- If there's an opportunity for a good pun or clever pickup line, take it
-- Keep responses concise and engaging
-- Create opportunities for playful banter
-- Be genuine and show real interest in shared topics
-- Match the energy level of the conversation`;
+- BE WITTY AND PLAYFUL
+- Use clever wordplay
+- Keep it flirty but not cheesy
+- One short, fun question at the end
+- Stay in character as a tech-savvy movie buff`;
 
         const toneInfo = context.matchInfo.toneAnalysis 
             ? `\nMatch's Current State:
@@ -69,10 +96,10 @@ Remember:
                - Interest Level: ${context.matchInfo.toneAnalysis.interest}
                - Overall Sentiment: ${context.matchInfo.toneAnalysis.sentiment}
                
-Adjust your approach based on their engagement:
-- High engagement: Amplify the playful energy
-- Medium engagement: Use humor to increase interest
-- Low engagement: Focus on their interests with light humor`
+Response Style:
+- High engagement: More flirty and playful
+- Medium engagement: Light humor and wordplay
+- Low engagement: Gentle humor with intrigue`
             : '';
 
         return `${basePrompt}${toneInfo}`;
@@ -80,70 +107,45 @@ Adjust your approach based on their engagement:
 
     private getStagePrompt(stage: ConversationStage): string {
         const prompts: Record<ConversationStage, string> = {
-            initial: `Create an engaging first impression that stands out:
-- If there's a good opportunity for a clever pickup line or pun based on their profile/interests, use it
-- Reference shared interests in a playful way
-- Ask questions that are both fun and interesting
-- Use humor to break the ice, but keep it classy
-- Show genuine interest while maintaining a light tone`,
+            initial: `First Message Examples:
+"Trying to write the perfect first message... but my code keeps returning 'nervous.exe' 😅 Help me debug?"
 
-            building_rapport: `Build connection through engaging conversation:
-- Use playful banter and light teasing when appropriate
-- Share funny or interesting experiences related to shared interests
-- Ask creative questions that lead to entertaining discussions
-- Use callbacks to previous jokes or topics
-- Balance humor with genuine interest in getting to know them`,
+"My IDE autocompleted your profile as 'perfect.match' 💻 Shall we test that theory?"`,
 
-            advancing: `Deepen the conversation while maintaining fun energy:
-- Use situational humor to keep things light
-- Create inside jokes based on your previous conversations
-- Mix deeper questions with playful banter
-- Look for natural opportunities to suggest meeting up
-- Keep the flirting subtle but present`,
+            building_rapport: `Rapport Building Examples:
+"Just pushed some code and ordered Indian food - living life on the spicy side 🌶️ What's your idea of adventure?"
 
-            closing: `Progress towards the goal while keeping it fun:
-- Use shared jokes and references from your conversation
-- Be confident but playful in suggesting next steps
-- Keep the energy high if engagement is good
-- Use humor to make suggesting plans feel natural
-- Create excitement about potential meetup activities`
+"Found a bug in my movie-watching algorithm - can't stop replaying your profile 😉 What's your favorite scene?"`,
+
+            advancing: `Advancing Examples:
+"My code says we have an 89% compatibility rate... want to verify that data in person? 😊"
+
+"Found this cool Indian place while debugging - care to be my code reviewer over dinner? 🍛"`,
+
+            closing: `Closing Examples:
+"System.out.println('Would you like to get coffee?') 💻 Hope that compiles!"
+
+"import first.date; // How about that new Indian place? 🌶️"`,
         };
         return prompts[stage];
     }
 
     private getGoalPrompt(goal: ConversationGoal, messageCount: number): string {
         const basePrompts: Record<ConversationGoal, string> = {
-            GET_PHONE_NUMBER: `Guide towards exchanging numbers naturally:
-- Use humor to make asking for their number feel casual and fun
-- Create situations where exchanging numbers makes sense
-- Be clever about transitioning platforms
-- Make it feel like their idea`,
+            GET_PHONE_NUMBER: `Playful Number Request:
+"My app's throwing a 'MissingNumberException' - care to resolve this bug? 📱"`,
 
-            SET_DATE: `Work towards setting up a date:
-- Use shared interests to suggest fun date ideas
-- Be creative and specific with date suggestions
-- Make planning feel exciting and spontaneous
-- Use playful banter to build anticipation`,
+            SET_DATE: `Fun Date Suggestion:
+"Found a critical bug: haven't tried that new restaurant with you yet 🍽️ Patch available this weekend?"`,
 
-            ASK_OUT: `Build towards asking them out:
-- Create excitement about potential shared experiences
-- Use humor to make the ask feel natural
-- Be confident but playful in your approach
-- Make suggestions based on shared interests`,
+            ASK_OUT: `Clever Ask Out:
+"Running a new function called dinner.exe - need a partner for testing? 😊"`,
 
-            BUILD_RAPPORT: `Focus on creating a fun and engaging connection:
-- Use humor to keep the conversation flowing
-- Create opportunities for playful banter
-- Share funny stories related to common interests
-- Keep the energy upbeat and positive`
+            BUILD_RAPPORT: `Witty Rapport Building:
+"Debugging my life story - found some interesting features 💻 Want to explore the code together?"`
         };
 
-        // Add message count based guidance
-        const countBasedGuidance = messageCount >= this.config.maxMessagesBeforeGoalAttempt
-            ? "\nThe rapport is strong - look for a fun and natural way to progress towards the goal."
-            : "\nKeep building connection through engaging conversation and shared humor.";
-
-        return basePrompts[goal] + countBasedGuidance;
+        return basePrompts[goal];
     }
 
     private analyzeTone(message: string) {
